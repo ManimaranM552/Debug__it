@@ -1,0 +1,314 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+}
+
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --button-bg: #4CAF50;
+  --button-text: #ffffff;
+}
+
+
+/* 🔹 Background Video Styling */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.6); /* Darkens video for readability */
+}
+
+/* 🔹 Page Base */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* 🔹 Header (logo + name) — fixed top-left on all pages */
+header {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+header img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1;
+  color: var(--text-color);
+  transition: color 0.4s ease;
+}
+
+
+/* 🔹 Top-right (bulb + menu) */
+.top-right {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  z-index: 100;
+}
+
+/* 💡 Bulb icon */
+.bulb {
+  cursor: pointer;
+  font-size: 1.8em;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.bulb:hover {
+  transform: rotate(15deg);
+  color: gold;
+}
+
+/* ☰ Menu icon */
+.menu {
+  cursor: pointer;
+  font-size: 1.8em;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.menu:hover {
+  transform: scale(1.1);
+}
+
+/* 🔽 Dropdown menu */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 38px;
+  right: 0;
+  background-color: var(--bg-color);
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  z-index: 10;
+  min-width: 160px;
+}
+
+/* Dropdown links */
+.dropdown a {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1em;
+  font-weight: 500;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Hover effect */
+.dropdown a:hover {
+  background-color: rgba(0, 123, 255, 0.15);
+}
+
+/* Active dropdown (when menu is open) */
+.menu.active .dropdown {
+  display: block;
+}
+
+/* 🔹 Play Button */
+.play-btn {
+  padding: 15px 40px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.play-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 🔹 Form Page Styling */
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(22, 27, 34, 0.9);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00d1b2;
+  text-align: center;
+  width: 350px;
+  max-width: 90%;
+}
+
+.form-container h2 {
+  color: #00d1b2;
+  margin-bottom: 20px;
+}
+
+.form-container input {
+  width: 85%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1em;
+}
+
+.form-container button {
+  background: #00d1b2;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 90%;
+}
+
+.form-container button:hover {
+  background: #00b89c;
+}
+
+.form-container p {
+  color: #ccc;
+  margin-top: 15px;
+}
+
+.form-container a {
+  color: #00d1b2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Password input with toggle*/ 
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.password-wrapper input {
+  width: 85%;
+  padding-right: 44px; /* room for eye button */
+  box-sizing: border-box;
+}
+
+.pw-toggle {
+  position: absolute;
+  right: calc(7.5% - 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+  color: var(--text-color);
+}
+
+.pw-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 🔹 New Login Box Styling (matches your wireframe) */
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 0 25px #00d1b2;
+}
+
+.login-box h2 {
+  color: #00d1b2;
+  margin-bottom: 25px;
+}
+
+.login-box input {
+  width: 85%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.login-box button {
+  background: #00d1b2;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 90%;
+  margin-top: 10px;
+}
+
+.login-box button:hover {
+  background: #00b89c;
+}
+
+.login-box p {
+  color: #ccc;
+  margin-top: 15px;
+}
+
+.login-box a {
+  color: #00d1b2;
+  text-decoration: none;
+  font-weight: bold;
+}
