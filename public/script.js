@@ -34,3 +34,16 @@ function logoutUser() {
     .then(() => window.location.href = 'login.html')
     .catch(err => console.error('Logout failed:', err));
 }
+
+function togglePassword() {
+  const passwordField = document.getElementById("password");
+  const eyeIcon = document.querySelector(".toggle-password");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    eyeIcon.textContent = "🙈"; // change icon when visible
+  } else {
+    passwordField.type = "password";
+    eyeIcon.textContent = "👁️"; // change icon when hidden
+  }
+}
