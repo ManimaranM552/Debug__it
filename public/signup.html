@@ -26,20 +26,18 @@
     <form action="/signup" method="POST">
       <input type="text" name="username" placeholder="Username" required />
       <input type="email" name="email" placeholder="Email" required />
+
       <div class="password-container">
-        <input type="password" name="password" id="password" placeholder="Enter Password" required>
-        <span class="toggle-password" onclick="togglePassword()">
-         👁️
-        </span>
+        <input type="password" name="password" id="password" placeholder="Enter Password" required />
+        <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
       </div>
 
       <button type="submit">Sign Up</button>
     </form>
 
-  
-    <p>Already have an account? <a href="index.html">Login</a></p>
+  <p>Already have an account? <a href="index.html">Login</a></p>
+</div>
 
-  </div>
 
 </body>
 </html>

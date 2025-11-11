@@ -22,9 +22,10 @@ function toggleMenu() {
 }
 
 // 🔹 Close dropdown when clicking outside
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (!event.target.matches('.menu, .menu *')) {
-    document.querySelector('.menu').classList.remove('active');
+    const menu = document.querySelector('.menu');
+    if (menu) menu.classList.remove('active');
   }
 };
 
@@ -35,15 +36,16 @@ function logoutUser() {
     .catch(err => console.error('Logout failed:', err));
 }
 
-function togglePassword() {
-  const passwordField = document.getElementById("password");
-  const eyeIcon = document.querySelector(".toggle-password");
+// ✅ Improved Password Toggle (works for both login & signup)
+function togglePassword(id, element) {
+  const passwordField = document.getElementById(id);
+  if (!passwordField) return; // safety check
 
   if (passwordField.type === "password") {
     passwordField.type = "text";
-    eyeIcon.textContent = "🙈"; // change icon when visible
+    element.textContent = "🙈"; // change icon when visible
   } else {
     passwordField.type = "password";
-    eyeIcon.textContent = "👁️"; // change icon when hidden
+    element.textContent = "👁️"; // change icon when hidden
   }
 }

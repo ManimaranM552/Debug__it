@@ -12,7 +12,6 @@
   --button-text: #ffffff;
 }
 
-
 /* 🔹 Background Video Styling */
 #bg-video {
   position: fixed;
@@ -22,7 +21,7 @@
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  filter: brightness(0.6); /* Darkens video for readability */
+  filter: brightness(0.6);
 }
 
 /* 🔹 Page Base */
@@ -31,7 +30,6 @@ body {
   color: var(--text-color);
   font-family: 'Poppins', sans-serif;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -39,7 +37,7 @@ body {
   transition: background-color 0.4s, color 0.4s;
 }
 
-/* 🔹 Header (logo + name) — fixed top-left on all pages */
+/* 🔹 Header */
 header {
   position: absolute;
   top: 15px;
@@ -60,13 +58,11 @@ header h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
-  line-height: 1;
   color: var(--text-color);
   transition: color 0.4s ease;
 }
 
-
-/* 🔹 Top-right (bulb + menu) */
+/* 🔹 Top-right Controls */
 .top-right {
   position: absolute;
   top: 20px;
@@ -99,7 +95,7 @@ header h1 {
   transform: scale(1.1);
 }
 
-/* 🔽 Dropdown menu */
+/* 🔽 Dropdown */
 .dropdown {
   display: none;
   position: absolute;
@@ -109,12 +105,10 @@ header h1 {
   border: 1px solid var(--text-color);
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  z-index: 10;
   min-width: 160px;
+  overflow: hidden;
 }
 
-/* Dropdown links */
 .dropdown a {
   display: block;
   padding: 12px 18px;
@@ -122,36 +116,18 @@ header h1 {
   color: var(--text-color);
   font-size: 1em;
   font-weight: 500;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease;
 }
 
-/* Hover effect */
 .dropdown a:hover {
   background-color: rgba(0, 123, 255, 0.15);
 }
 
-/* Active dropdown (when menu is open) */
 .menu.active .dropdown {
   display: block;
 }
 
-/* 🔹 Play Button */
-.play-btn {
-  padding: 15px 40px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.play-btn:hover {
-  background-color: #0056b3;
-}
-
-/* 🔹 Form Page Styling */
+/* 🔹 Form Styling (for other pages) */
 .form-container {
   position: absolute;
   top: 50%;
@@ -166,92 +142,41 @@ header h1 {
   max-width: 90%;
 }
 
-.form-container h2 {
-  color: #00d1b2;
-  margin-bottom: 20px;
-}
-
 .form-container input {
-  width: 85%;
+  width: 90%;
+  height: 45px;
   margin: 10px 0;
   padding: 10px;
   border: none;
   border-radius: 8px;
   outline: none;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .form-container button {
   background: #00d1b2;
   color: white;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   width: 90%;
 }
-
 .form-container button:hover {
   background: #00b89c;
 }
 
-.form-container p {
-  color: #ccc;
-  margin-top: 15px;
-}
-
-.form-container a {
-  color: #00d1b2;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Password input with toggle*/ 
-.password-wrapper {
-  position: relative;
-  width: 100%;
-  margin: 10px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.password-wrapper input {
-  width: 85%;
-  padding-right: 44px; /* room for eye button */
-  box-sizing: border-box;
-}
-
-.pw-toggle {
-  position: absolute;
-  right: calc(7.5% - 10px);
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 1.1rem;
-  line-height: 1;
-  padding: 6px;
-  border-radius: 6px;
-  transition: background 0.15s;
-  color: var(--text-color);
-}
-
-.pw-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* 🔹 New Login Box Styling (matches your wireframe) */
+/* 🔹 Login Box Styling */
 .login-box {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #1e1e1e;
-  padding: 40px;
+  padding: 45px;
   border-radius: 20px;
-  width: 350px;
+  width: 380px;
   text-align: center;
   box-shadow: 0 0 25px #00d1b2;
 }
@@ -262,40 +187,62 @@ header h1 {
 }
 
 .login-box input {
-  width: 85%;
+  width: 90%;
+  height: 50px;
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 8px;
-  font-size: 1em;
+  border-radius: 10px;
+  font-size: 1.1em;
   outline: none;
 }
 
-.password-wrapper {
+/* ✅ LOGIN PASSWORD BOX (eye inside input) */
+.login-box .password-container {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.toggle-password {
+.login-box .password-container input {
+  width: 94%;
+  height: 50px;
+  padding: 10px 40px 10px 12px; /* 👁️ space inside */
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.login-box .toggle-password {
   position: absolute;
-  right: 35px;
+  right: 42px; /* 👁️ sits inside box */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  color: #bbb;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.login-box .toggle-password:hover {
+  color: #00d1b2;
 }
 
 .login-box button {
   background: #00d1b2;
   color: white;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   width: 90%;
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 1.1em;
 }
 
 .login-box button:hover {
@@ -313,25 +260,48 @@ header h1 {
   font-weight: bold;
 }
 
-.password-container {
+/* ✅ SIGNUP PAGE (eye inside input same width as others) */
+.signup-box input {
+  width: 85%;
+  height: 45px;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+}
+
+.signup-box .password-container {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.password-container input {
-  width: 100%;
-  padding-right: 40px; /* Space for the eye icon */
+.signup-box .password-container input {
+  width: 85%;
+  height: 45px;
+  padding: 10px 40px 10px 10px; /* 👁️ space inside */
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+  box-sizing: border-box;
 }
 
-.toggle-password {
+.signup-box .toggle-password {
   position: absolute;
-  right: 10px;
+  right: 42px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  font-size: 18px;
-  color: #555;
+  font-size: 1.1rem;
+  color: #bbb;
+  user-select: none;
+  transition: color 0.3s ease;
 }
 
-.toggle-password:hover {
-  color: #000;
+.signup-box .toggle-password:hover {
+  color: #00d1b2;
 }
