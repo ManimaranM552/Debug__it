@@ -260,30 +260,30 @@ header h1 {
   font-weight: bold;
 }
 
-/* ✅ SIGNUP PAGE (eye inside input - compact version) */
+/* ✅ SIGNUP PAGE (compact input boxes with eye inside password) */
 .signup-box {
-  width: 340px; /* smaller signup form width */
-  padding: 30px;
+  width: 340px;
+  padding: 28px;
   background: #1e1e1e;
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 0 25px #00d1b2;
 }
 
-/* Input boxes */
+/* Input boxes (Username, Email) */
 .signup-box input {
   width: 85%;
-  height: 35px;
+  height: 28px;              /* ⬅️ reduced height */
   margin: 10px 0;
-  padding: 8px 10px;
+  padding: 6px 8px;          /* less padding */
   border: none;
   border-radius: 8px;
-  font-size: 1em;
+  font-size: 0.95em;         /* slightly smaller text */
   outline: none;
   box-sizing: border-box;
 }
 
-/* Password container (for eye icon placement) */
+/* Password container (eye icon alignment) */
 .signup-box .password-container {
   position: relative;
   width: 85%;
@@ -296,29 +296,28 @@ header h1 {
 /* Password input */
 .signup-box .password-container input {
   width: 100%;
-  height: 35px;
-  padding: 8px 40px 8px 10px; /* space for the eye */
+  height: 28px;              /* ⬅️ reduced height */
+  padding: 6px 35px 6px 8px; /* keep space for eye */
   border: none;
   border-radius: 8px;
-  font-size: 1em;
+  font-size: 0.95em;
   outline: none;
   box-sizing: border-box;
 }
 
-/* Eye icon styling */
+/* Eye icon */
 .signup-box .toggle-password {
   position: absolute;
-  right: 15px; /* 👁️ stays inside the input */
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #bbb;
   user-select: none;
   transition: color 0.3s ease;
 }
 
-/* Hover effect on eye */
 .signup-box .toggle-password:hover {
   color: #00d1b2;
 }
@@ -328,13 +327,13 @@ header h1 {
   background: #00d1b2;
   color: white;
   font-weight: bold;
-  padding: 10px;
+  padding: 8px;              /* ⬅️ smaller button height */
   border: none;
   border-radius: 8px;
   cursor: pointer;
   width: 85%;
-  margin-top: 15px;
-  font-size: 1em;
+  margin-top: 12px;
+  font-size: 0.95em;
   transition: background 0.3s ease;
 }
 
@@ -345,7 +344,8 @@ header h1 {
 /* Footer text and link */
 .signup-box p {
   color: #ccc;
-  margin-top: 15px;
+  margin-top: 12px;
+  font-size: 0.9em;
 }
 
 .signup-box a {
