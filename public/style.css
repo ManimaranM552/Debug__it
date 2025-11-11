@@ -144,7 +144,7 @@ header h1 {
 
 .form-container input {
   width: 90%;
-  height: 45px;
+  height: 35px;
   margin: 10px 0;
   padding: 10px;
   border: none;
@@ -188,7 +188,7 @@ header h1 {
 
 .login-box input {
   width: 90%;
-  height: 50px;
+  height: 25px;
   margin: 10px 0;
   padding: 12px;
   border: none;
@@ -206,7 +206,7 @@ header h1 {
 }
 
 .login-box .password-container input {
-  width: 94%;
+  width: 97%;
   height: 50px;
   padding: 10px 40px 10px 12px; /* 👁️ space inside */
   border: none;
@@ -218,7 +218,7 @@ header h1 {
 
 .login-box .toggle-password {
   position: absolute;
-  right: 42px; /* 👁️ sits inside box */
+  right: 30px; /* 👁️ sits inside box */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -240,7 +240,7 @@ header h1 {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  width: 90%;
+  width: 80%;
   margin-top: 15px;
   font-size: 1.1em;
 }
@@ -260,29 +260,22 @@ header h1 {
   font-weight: bold;
 }
 
-/* ✅ SIGNUP PAGE (eye inside input same width as others) */
+/* ✅ SIGNUP PAGE (eye inside input - compact version) */
+.signup-box {
+  width: 340px; /* smaller signup form width */
+  padding: 30px;
+  background: #1e1e1e;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 25px #00d1b2;
+}
+
+/* Input boxes */
 .signup-box input {
   width: 85%;
-  height: 45px;
+  height: 35px;
   margin: 10px 0;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-  outline: none;
-}
-
-.signup-box .password-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signup-box .password-container input {
-  width: 85%;
-  height: 45px;
-  padding: 10px 40px 10px 10px; /* 👁️ space inside */
+  padding: 8px 10px;
   border: none;
   border-radius: 8px;
   font-size: 1em;
@@ -290,9 +283,32 @@ header h1 {
   box-sizing: border-box;
 }
 
+/* Password container (for eye icon placement) */
+.signup-box .password-container {
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Password input */
+.signup-box .password-container input {
+  width: 100%;
+  height: 35px;
+  padding: 8px 40px 8px 10px; /* space for the eye */
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Eye icon styling */
 .signup-box .toggle-password {
   position: absolute;
-  right: 42px;
+  right: 15px; /* 👁️ stays inside the input */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -302,6 +318,38 @@ header h1 {
   transition: color 0.3s ease;
 }
 
+/* Hover effect on eye */
 .signup-box .toggle-password:hover {
   color: #00d1b2;
+}
+
+/* Signup button */
+.signup-box button {
+  background: #00d1b2;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 85%;
+  margin-top: 15px;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+.signup-box button:hover {
+  background: #00b89c;
+}
+
+/* Footer text and link */
+.signup-box p {
+  color: #ccc;
+  margin-top: 15px;
+}
+
+.signup-box a {
+  color: #00d1b2;
+  text-decoration: none;
+  font-weight: bold;
 }
