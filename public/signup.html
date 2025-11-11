@@ -21,7 +21,7 @@
   </header>
 
   <!-- 🔹 Signup Form -->
-  <div class="form-container">
+  <div class="signup-box">
     <h2>Create Account</h2>
     <form action="/signup" method="POST">
       <input type="text" name="username" placeholder="Username" required />
@@ -38,6 +38,14 @@
   <p>Already have an account? <a href="index.html">Login</a></p>
 </div>
 
+<script>
+function togglePassword(id, el) {
+  const passwordField = document.getElementById(id);
+  const isPassword = passwordField.type === "password";
+  passwordField.type = isPassword ? "text" : "password";
+  el.style.color = isPassword ? "#00d1b2" : "#bbb"; // 👁️ turns teal when visible
+}
+</script>
 
 </body>
 </html>

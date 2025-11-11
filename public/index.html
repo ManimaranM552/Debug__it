@@ -36,14 +36,18 @@
 
   <p>Don’t have an account? <a href="signup.html">Create Account</a></p>
 </div>
+<script>
+function togglePassword(id, el) {
+  const pw = document.getElementById(id);
+  const isHidden = pw.type === "password";
 
+  // Toggle visibility
+  pw.type = isHidden ? "text" : "password";
 
-  <script>
-    function togglePassword() {
-      const pw = document.getElementById("password");
-      pw.type = pw.type === "password" ? "text" : "password";
-    }
-  </script>
+  // Optional: visual feedback (icon color)
+  el.style.color = isHidden ? "#00d1b2" : "#bbb";
+}
+</script>
 
 </body>
 </html>
