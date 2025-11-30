@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEBUGIT - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 🔹 Background Video -->
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+
+
+  <!-- 🔹 Header -->
+  <header>
+    <img src="DEBUGITLogo1.png" alt="DEBUGIT Logo" />
+    <h1>DEBUGIT</h1>
+  </header>
+
+  <!-- 🔹 Login Form -->
+  <div class="login-box">
+    <h2>Login</h2>
+    <form action="https://debugit-2b7y.onrender.com/login" method="POST">
+      <input type="email" name="email" placeholder="Email" required />
+
+      <div class="password-container">
+        <input type="password" name="password" id="login-password" placeholder="Password" required />
+        <span class="toggle-password" onclick="togglePassword('login-password', this)">👁️</span>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+  <p>Don’t have an account? <a href="signup.html">Create Account</a></p>
+</div>
+<script>
+function togglePassword(id, el) {
+  const pw = document.getElementById(id);
+  const isHidden = pw.type === "password";
+
+  // Toggle visibility
+  pw.type = isHidden ? "text" : "password";
+
+  // Optional: visual feedback (icon color)
+  el.style.color = isHidden ? "#00d1b2" : "#bbb";
+}
+</script>
+
+</body>
+</html>

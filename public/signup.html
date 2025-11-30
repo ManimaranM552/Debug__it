@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEBUGIT - Sign Up</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 🔹 Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🔹 Header -->
+  <header>
+    <img src="DEBUGITLogo1.png" alt="DEBUGIT Logo" />
+    <h1>DEBUGIT</h1>
+  </header>
+
+  <!-- 🔹 Signup Form -->
+  <div class="signup-box">
+    <h2>Create Account</h2>
+    <form action="https://debugit-2b7y.onrender.com/signup" method="POST">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="email" name="email" placeholder="Email" required />
+
+      <div class="password-container">
+        <input type="password" name="password" id="password" placeholder="Enter Password" required />
+        <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+  <p>Already have an account? <a href="index.html">Login</a></p>
+</div>
+
+<script>
+function togglePassword(id, el) {
+  const passwordField = document.getElementById(id);
+  const isPassword = passwordField.type === "password";
+  passwordField.type = isPassword ? "text" : "password";
+  el.style.color = isPassword ? "#00d1b2" : "#bbb"; // 👁️ turns teal when visible
+}
+</script>
+
+</body>
+</html>

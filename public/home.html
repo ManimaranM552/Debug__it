@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debugit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 🔹 Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🔹 Header with logo and title -->
+  <header>
+    <img src="DEBUGITLogo1.png" alt="Debugit Logo">
+    <h1>Debugit</h1>
+  </header>
+
+  <!-- 🔹 Top-right corner with bulb + menu -->
+  <div class="top-right">
+    <div class="bulb" onclick="toggleMode()" title="Toggle Light/Dark Mode">💡</div>
+    <div class="menu" onclick="toggleMenu()" title="Menu">
+      ☰
+      <div class="dropdown" id="menuDropdown">
+        <a href="about.html">About</a>
+        <a href="controls.html">How to Play</a>
+        <a href="index.html">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Center Play button -->
+  <button class="play-btn" onclick="playGame()">Play Game</button>
+
+  <!-- 🔹 Play Game Function -->
+  <script>
+    function playGame() {
+      window.location.href = "game/index.html"; 
+    }
+  </script>
+
+  <!-- 🔹 External Script File -->
+  <script src="script.js"></script>
+
+</body>
+</html>
