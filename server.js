@@ -1,10 +1,3 @@
-// 🔹 CORS for Netlify frontend
-const cors = require('cors');
-app.use(cors({
-  origin: "https://lambent-malabi-419196.netlify.app",
-  credentials: true
-}));
-
 // ✅ Load environment variables first
 const dotenv = require('dotenv');
 const path = require('path');
@@ -18,19 +11,23 @@ const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const fs = require('fs');
+const cors = require('cors');
 
-const app = express();
+const app = express();  // <-- MUST COME BEFORE app.use()
 
-// ❗ Remove duplicate CORS line
-// app.use(cors());   <-- removed
+// 🔹 CORS for Netlify frontend
+app.use(cors({
+  origin: "https://lambent-malabi-419196.netlify.app",
+  credentials: true
+}));
 
-// ✅ Middleware setup
+// 🔹 Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// ✅ Serve static files
+// 🔹 Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ Serve video with correct MIME type
+// 🔹 Serve video file
 app.get("/video.mp4", (req, res) => {
   const videoPath = path.join(__dirname, "public", "video.mp4");
   if (!fs.existsSync(videoPath)) {
@@ -42,19 +39,19 @@ app.get("/video.mp4", (req, res) => {
   res.sendFile(videoPath);
 });
 
-// ✅ Session setup
+// 🔹 Session setup
 app.use(session({
   secret: 'debugit-secret-key',
   resave: false,
   saveUninitialized: false,
 }));
 
-// ✅ Connect to MongoDB
+// 🔹 Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
-// ✅ User schema
+// 🔹 User schema
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
@@ -62,7 +59,7 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 
-// ✅ Login protection middleware
+// 🔹 Login protection
 function requireLogin(req, res, next) {
   if (!req.session.userId) {
     return res.redirect('/login.html');
@@ -70,7 +67,7 @@ function requireLogin(req, res, next) {
   next();
 }
 
-// ✅ SIGNUP
+// 🔹 SIGNUP
 app.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -87,7 +84,7 @@ app.post('/signup', async (req, res) => {
   res.redirect('/index.html');
 });
 
-// ✅ LOGIN
+// 🔹 LOGIN
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -104,18 +101,18 @@ app.post('/login', async (req, res) => {
   res.redirect('/home.html');
 });
 
-// ✅ LOGOUT
+// 🔹 LOGOUT
 app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/login.html');
 });
 
-// ✅ Protect index.html
+// 🔹 Protect index.html
 app.get('/index.html', requireLogin, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ✅ Default route
+// 🔹 Default route
 app.get('/', (req, res) => {
   if (req.session.userId) {
     res.redirect('/index.html');
@@ -124,7 +121,7 @@ app.get('/', (req, res) => {
   }
 });
 
-// ✅ Start the server on Render (0.0.0.0 fix)
+// 🔹 Start server (required for Render)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 DEBUGIT running on port ${PORT}`);
