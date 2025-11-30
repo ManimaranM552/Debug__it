@@ -1,3 +1,5 @@
+// 🔹 CORS for Netlify frontend
+const cors = require('cors');
 app.use(cors({
   origin: "https://lambent-malabi-419196.netlify.app",
   credentials: true
@@ -16,25 +18,25 @@ const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const fs = require('fs');
-const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+// ❗ Remove duplicate CORS line
+// app.use(cors());   <-- removed
 
 // ✅ Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// ✅ Serve static files (HTML, CSS, JS, images, videos)
+// ✅ Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ Serve video with correct MIME type for Brave / Chrome
+// ✅ Serve video with correct MIME type
 app.get("/video.mp4", (req, res) => {
   const videoPath = path.join(__dirname, "public", "video.mp4");
   if (!fs.existsSync(videoPath)) {
     return res.status(404).send("Video not found");
   }
 
-  // Force correct content type so Brave doesn't download it
   res.setHeader("Content-Type", "video/mp4");
   res.setHeader("Accept-Ranges", "bytes");
   res.sendFile(videoPath);
@@ -52,7 +54,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
-// ✅ Define user schema
+// ✅ User schema
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
@@ -60,7 +62,7 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 
-// ✅ Middleware to protect pages
+// ✅ Login protection middleware
 function requireLogin(req, res, next) {
   if (!req.session.userId) {
     return res.redirect('/login.html');
@@ -68,7 +70,7 @@ function requireLogin(req, res, next) {
   next();
 }
 
-// ✅ SIGNUP ROUTE
+// ✅ SIGNUP
 app.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -85,7 +87,7 @@ app.post('/signup', async (req, res) => {
   res.redirect('/index.html');
 });
 
-// ✅ LOGIN ROUTE
+// ✅ LOGIN
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -102,7 +104,7 @@ app.post('/login', async (req, res) => {
   res.redirect('/home.html');
 });
 
-// ✅ Logout route
+// ✅ LOGOUT
 app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/login.html');
@@ -122,8 +124,8 @@ app.get('/', (req, res) => {
   }
 });
 
-// ✅ Start the server
+// ✅ Start the server on Render (0.0.0.0 fix)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`🚀 DEBUGIT running at http://localhost:${PORT}`)
-);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 DEBUGIT running on port ${PORT}`);
+});
