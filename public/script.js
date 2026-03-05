@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
 
 // 🔹 Redirect to Godot game page
 function playGame() {
-  window.location.href = "https://lambent-malabi-419196.netlify.app/game/index.html";
+  window.location.href = "game/index.html";
 }
 
 
