@@ -15,20 +15,35 @@ const cors = require('cors');
 
 const app = express();
 
+
+// ⭐ REQUIRED FOR GODOT WEB EXPORT
+// Cross-Origin Isolation headers
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+});
+
+
 // 🔹 CORS for Netlify frontend
 app.use(cors({
   origin: "https://debugit12.netlify.app",
   credentials: true
 }));
 
+
 // 🔹 Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// 🔹 Serve static files (optional)
+
+// 🔹 Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // 🔹 Serve video file
 app.get("/video.mp4", (req, res) => {
+
   const videoPath = path.join(__dirname, "public", "video.mp4");
 
   if (!fs.existsSync(videoPath)) {
@@ -37,8 +52,10 @@ app.get("/video.mp4", (req, res) => {
 
   res.setHeader("Content-Type", "video/mp4");
   res.setHeader("Accept-Ranges", "bytes");
+
   res.sendFile(videoPath);
 });
+
 
 // 🔹 Session setup
 app.use(session({
@@ -47,10 +64,12 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+
 // 🔹 Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB Connection Error:', err));
+
 
 // 🔹 User schema
 const userSchema = new mongoose.Schema({
@@ -61,6 +80,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+
 // 🔹 Login protection
 function requireLogin(req, res, next) {
   if (!req.session.userId) {
@@ -68,6 +88,7 @@ function requireLogin(req, res, next) {
   }
   next();
 }
+
 
 // 🔹 SIGNUP
 app.post('/signup', async (req, res) => {
@@ -95,6 +116,7 @@ app.post('/signup', async (req, res) => {
   res.redirect('https://debugit12.netlify.app/index.html');
 });
 
+
 // 🔹 LOGIN
 app.post('/login', async (req, res) => {
 
@@ -120,6 +142,7 @@ app.post('/login', async (req, res) => {
   res.redirect('https://debugit12.netlify.app/home.html');
 });
 
+
 // 🔹 LOGOUT
 app.get('/logout', (req, res) => {
 
@@ -127,6 +150,7 @@ app.get('/logout', (req, res) => {
 
   res.redirect('https://debugit12.netlify.app/index.html');
 });
+
 
 // 🔹 Default route
 app.get('/', (req, res) => {
@@ -138,6 +162,7 @@ app.get('/', (req, res) => {
   }
 
 });
+
 
 // 🔹 Start server (required for Render)
 const PORT = process.env.PORT || 3000;
