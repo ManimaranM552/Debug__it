@@ -15,30 +15,24 @@ const cors = require('cors');
 
 const app = express();
 
-
-// ⭐ REQUIRED FOR GODOT WEB EXPORT
-// Cross-Origin Isolation headers
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
-  next();
-});
-
-
 // 🔹 CORS for Netlify frontend
 app.use(cors({
   origin: "https://debugit12.netlify.app",
   credentials: true
 }));
 
-
 // 🔹 Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// 🔹 Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// ⭐ Serve static files with required headers for Godot Web
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res) => {
+    res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+    res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  }
+}));
 
 
 // 🔹 Serve video file
